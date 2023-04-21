@@ -62,13 +62,11 @@ const App = () => {
       <div className="restaurant-filter-container">
         <Selector<SelectorCategory>
           filterRef={categoryRef}
-          selectedValue={categoryRef.current?.value as SelectorCategory}
           optionList={CATEGORY_OPTIONS}
           onChange={categoryOnChange}
         />
         <Selector<SelectorFilter>
           filterRef={sortRef}
-          selectedValue={sortRef.current?.value as SelectorFilter}
           optionList={FILTER_OPTIONS}
           onChange={filterOnChange}
         />
