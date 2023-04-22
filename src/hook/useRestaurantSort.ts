@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { restaurant, appState } from '../utils/interfaces';
+import { Restaurant, AppState } from '../utils/interfaces';
 import { SelectorCategory, SelectorFilter } from '../utils/types';
 
-export function useRestaurantSorting(props: appState) {
+export function useRestaurantSorting(props: AppState) {
   const { category, filter, wholeList } = props;
-  const [sortedRestaurants, setSortedRestaurants] = useState<restaurant[]>(wholeList);
+  const [sortedRestaurants, setSortedRestaurants] = useState<Restaurant[]>(wholeList);
   const [currentCategory, setCurrentCategory] = useState<SelectorCategory>(category);
   const [currentFilter, setCurrentFilter] = useState<SelectorFilter>(filter);
 
@@ -17,7 +17,7 @@ export function useRestaurantSorting(props: appState) {
   return { sortedRestaurants, setCurrentCategory, setCurrentFilter };
 }
 
-function sortingByCategory(category: SelectorCategory, wholeList: Array<restaurant>) {
+function sortingByCategory(category: SelectorCategory, wholeList: Array<Restaurant>) {
   if (category === '전체') {
     return wholeList;
   }
@@ -25,7 +25,7 @@ function sortingByCategory(category: SelectorCategory, wholeList: Array<restaura
   return wholeList.filter(item => item.category === category);
 }
 
-function sortingByFilter(filter: SelectorFilter, wholeList: Array<restaurant>) {
+function sortingByFilter(filter: SelectorFilter, wholeList: Array<Restaurant>) {
   if (filter === '이름순') {
     return sortByName(wholeList);
   }
@@ -33,7 +33,7 @@ function sortingByFilter(filter: SelectorFilter, wholeList: Array<restaurant>) {
   return sortByDistance(wholeList);
 }
 
-function sortByName(restaurants: Array<restaurant>) {
+function sortByName(restaurants: Array<Restaurant>) {
   const nameSortedRestaurants = [...restaurants].sort((a, b) => {
     if (compareName(a, b) === 0) return compareDistance(a, b);
 
@@ -43,7 +43,7 @@ function sortByName(restaurants: Array<restaurant>) {
   return nameSortedRestaurants;
 }
 
-function sortByDistance(restaurants: Array<restaurant>) {
+function sortByDistance(restaurants: Array<Restaurant>) {
   const distanceSortedRestaurants = [...restaurants].sort((a, b) => {
     if (compareDistance(a, b) === 0) return compareName(a, b);
 
@@ -53,10 +53,10 @@ function sortByDistance(restaurants: Array<restaurant>) {
   return distanceSortedRestaurants;
 }
 
-function compareName(standard: restaurant, compare: restaurant) {
+function compareName(standard: Restaurant, compare: Restaurant) {
   return standard.name.localeCompare(compare.name);
 }
 
-function compareDistance(standard: restaurant, compare: restaurant) {
+function compareDistance(standard: Restaurant, compare: Restaurant) {
   return standard.distance - compare.distance;
 }

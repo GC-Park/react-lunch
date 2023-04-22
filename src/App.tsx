@@ -4,7 +4,7 @@ import Header from './components/Header';
 import ItemList from './components/ItemList';
 import Selector from './components/Selector';
 import mockData from './mockData/restaurantList.json';
-import { restaurant } from './utils/interfaces';
+import { Restaurant } from './utils/interfaces';
 import { parseJson } from './utils/json';
 import { SelectorCategory, SelectorFilter } from './utils/types';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
@@ -15,12 +15,12 @@ import { useRestaurantSorting } from './hook/useRestaurantSort';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 
 const App = () => {
-  const localStorageSavedList = typePredicates<Array<restaurant>>({
+  const localStorageSavedList = typePredicates<Array<Restaurant>>({
     data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
     initialData: [],
   });
 
-  const restaurantMockDataList = typePredicates<Array<restaurant>>({
+  const restaurantMockDataList = typePredicates<Array<Restaurant>>({
     data: mockData.restaurantList,
     initialData: [],
   });
@@ -56,20 +56,13 @@ const App = () => {
     return arrays.includes(value as T);
   };
 
+  console.log(sortedRestaurants);
   return (
     <>
       <Header />
       <div className="restaurant-filter-container">
-        <Selector<SelectorCategory>
-          filterRef={categoryRef}
-          optionList={CATEGORY_OPTIONS}
-          onChange={categoryOnChange}
-        />
-        <Selector<SelectorFilter>
-          filterRef={sortRef}
-          optionList={FILTER_OPTIONS}
-          onChange={filterOnChange}
-        />
+        <Selector<SelectorCategory> filterRef={categoryRef} optionList={CATEGORY_OPTIONS} onChange={categoryOnChange} />
+        <Selector<SelectorFilter> filterRef={sortRef} optionList={FILTER_OPTIONS} onChange={filterOnChange} />
       </div>
       <ItemList itemList={sortedRestaurants} />
     </>

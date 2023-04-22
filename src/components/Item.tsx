@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { restaurant } from '../utils/interfaces';
+import { Restaurant } from '../utils/interfaces';
 import '../styles/Item.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
 import useModal from '../hook/useModal';
@@ -7,7 +7,7 @@ import ModalPortal from './ModalPortal';
 import ItemInformation from './ItemInformation';
 
 interface Props {
-  restaurantItem: restaurant;
+  restaurantItem: Restaurant;
 }
 
 const Item: React.FC<Props> = props => {

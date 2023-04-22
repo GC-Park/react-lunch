@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { restaurant } from '../utils/interfaces';
+import { Restaurant } from '../utils/interfaces';
 import '../styles/ItemList.css';
 import Item from './Item';
 
 interface Props {
-  itemList: restaurant[];
+  itemList: Restaurant[];
 }
 
 const ItemList: React.FC<Props> = props => {
