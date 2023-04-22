@@ -2,7 +2,7 @@ import React from 'react';
 import { restaurant } from '../utils/interfaces';
 import '../styles/ItemInformation.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
-import DetailItem from './DetailItem';
+import ItemWrapper from './DetailItem';
 
 interface Props {
   restaurant: restaurant;
@@ -18,26 +18,26 @@ const ItemInformation: React.FC<Props> = (props) => {
           <img src={CATEGORY_IMAGE_PATH[category]} className="category-icon modal-detail-restaurant__image" />
         </div>
 
-        <DetailItem class={'detail-item'}>
+        <ItemWrapper class={'detail-item'}>
           <h3 className="restaurant__name  modal-detail-restaurant__name text-subtitle">{name}</h3>
-        </DetailItem>
+        </ItemWrapper>
 
-        <DetailItem class={'detail-item'}>
+        <ItemWrapper class={'detail-item'}>
           <span className="restaurant__distance modal-detail-restaurant__distance text-body">
             캠퍼스부터 {distance}분 내
           </span>
-        </DetailItem>
+        </ItemWrapper>
 
         {description && (
-          <DetailItem class={'detail-item'}>
+          <ItemWrapper class={'detail-item'}>
             <p className="modal-detail-restaurant__description text-body">{description}</p>
-          </DetailItem>
+          </ItemWrapper>
         )}
 
         {link && (
-          <DetailItem class={'detail-item'}>
+          <ItemWrapper class={'detail-item'}>
             <a className="modal-detail-restaurant__link">{link}</a>
-          </DetailItem>
+          </ItemWrapper>
         )}
 
         <div className="button-container detail-button-container">
