@@ -10,13 +10,9 @@ interface Props {
   itemList: restaurant[];
 }
 
-interface State {
-  modalItem: restaurant | null;
-}
-
 const ItemList: React.FC<Props> = props => {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const [modalInformation, setmodalInformation] = useState<State>({ modalItem: null });
+  const [modalInformation, setmodalInformation] = useState<{modalItem:restaurant | null}>({ modalItem: null });
 
   const ulOnClickListener = (event: React.MouseEvent<HTMLUListElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
