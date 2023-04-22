@@ -30,7 +30,7 @@ const ModalPortal:React.FC<Props>=(props)=> {
       document.body.style.overflow = 'visible';
       props.dialogRef.current?.close();
     };
-  }, [props.dialogRef]);
+  }, []);
 
     return ReactDom.createPortal(
       <dialog ref={props.dialogRef} onKeyDown={dialogKeyDownListener} onClick={dialogBackdropListener}>
