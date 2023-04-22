@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 
 interface Props{
     class: string;
-    children: React.ReactNode;
+    children: ReactChild;
 }
 
 const DetailItem:React.FC<Props> = (props:Props)=>{

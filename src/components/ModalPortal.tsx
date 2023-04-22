@@ -1,8 +1,8 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactChild, useEffect } from 'react';
 import ReactDom from 'react-dom';
 
 interface Props {
-  children: ReactNode;
+  children: ReactChild;
   dialogRef: React.RefObject<HTMLDialogElement>;
   closeEvent: () => void;
 }
