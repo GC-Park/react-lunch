@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { restaurant } from '../utils/interfaces';
 import '../styles/Item.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
+import useModal from '../hook/useModal';
+import ModalPortal from './ModalPortal';
+import ItemInformation from './ItemInformation';
 
 interface Props {
   restaurantItem: restaurant;
 }
 
-const Item: React.FC<Props> = (props)=>{
-    const { category, name, distance, description, id } = props.restaurantItem;
-    return (
-      <li className="restaurant" data-id={id}>
+const Item: React.FC<Props> = props => {
+  const { category, name, distance, description, id } = props.restaurantItem;
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const { isModalOpen, openModal, closeModal } = useModal();
+
+  return (
+    <>
+      <li className="restaurant" data-id={id} onClick={openModal}>
         <div className="restaurant_info">
           <div className="restaurant__category">
             <img src={CATEGORY_IMAGE_PATH[category]} alt={category} className="category-icon" />
@@ -22,7 +29,13 @@ const Item: React.FC<Props> = (props)=>{
           </div>
         </div>
       </li>
-    );
-}
+      {isModalOpen && (
+        <ModalPortal closeEvent={closeModal} dialogRef={modalRef}>
+          <ItemInformation restaurant={props.restaurantItem} closeEvent={closeModal} />
+        </ModalPortal>
+      )}
+    </>
+  );
+};
 
 export default Item;
